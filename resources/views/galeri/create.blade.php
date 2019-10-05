@@ -5,11 +5,11 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Tambah Artikel</div>
+                <div class="card-header">Tambah Galeri</div>
 
                 <div class="card-body">
-                    <form method="post" action="{!! route('Artikel.store') !!}">
-                        @include('artikel.form')
+                    <form method="post" action="{!! route('Galeri.store') !!}">
+                        @include('Galeri.form')
                     </form>
                 </div>
             </div>
@@ -23,7 +23,7 @@
 
         <script>
                 $(document).ready(function() {
-                 CKEDITOR.replace( 'isi' );
+                 CKEDITOR.replace( 'keterangan' );
 
 
                 });

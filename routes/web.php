@@ -48,8 +48,21 @@ Route::get('/artikel/create','ArtikelController@create')->name('artikel.create')
 Route::post('/artikel','ArtikelController@store')->name('Artikel.store');
 Route::get('/artikel/{id}','ArtikelController@show')->name('Artikel.show');
 
-
-
+#Berita
 Route::get('/berita', 'BeritaController@index')->name('berita.index');
+Route::get('/berita/create','BeritaController@create')->name('berita.create');
+Route::post('/berita','BeritaController@store')->name('Berita.store');
+Route::get('/berita/{id}','BeritaController@show')->name('Berita.show');
+
+#Galeri
 Route::get('/galeri', 'GaleriController@index')->name('galeri.index');
+Route::get('/galeri/create','GaleriController@create')->name('galeri.create');
+Route::post('/galeri','GaleriController@store')->name('Galeri.store');
+Route::get('/galeri/{id}','GaleriController@show')->name('Galeri.show');
+
+
+#Pengumuman
 Route::get('/pengumuman', 'PengumumanController@index')->name('pengumuman.index'); 
+Route::get('/pengumuman/create','PengumumanController@create')->name('pengumuman.create');
+Route::post('/pengumuman','PengumumanController@store')->name('Pengumuman.store');
+Route::get('/pengumuman/{id}','PengumumanController@show')->name('Pengumuman.show');

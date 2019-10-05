@@ -5,35 +5,40 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Kategori Galeri</div>
-
+                <center><div class="card-header">Kategori Galeri</div></center>
+                <center>
                 <div class="card-body">
-                	<a href="{!! route('kategori_galeri.create') !!}" class="btn btn-primary">Tambah Data</a>
+                	
                    <table border="1">
-		<tr>
-			<td>ID</td>
-			<td>Nama</td>
-			<td>Users Id</td>
-			<td>Create</td>
-			<td>Update</td>
-			<td>Aksi</td>
-		</tr>
+                   	    <thead class="btn-lg bg-info">
+                   			<tr>
+								<th scope="col"><center>ID</center></th>
+								<th scope="col"><center>Nama</center></th>
+								<th scope="col"><center>Users Id</center></th>
+								<th scope="col"><center>Create</center></th>
+								<th scope="col"><center>Update</center></th>
+								<th scope="col"><center>Aksi</center></th>
+							</tr>
+                  	 	</thead>
+
 
 		@foreach($listKategoriGaleri as $item)
 
 		<tr>
-			<td>{!! $item->id !!}</td>
-			<td>{!! $item->nama !!}</td>
-			<td>{!! $item->users_id !!}</td> 
-			<td>{!! $item->created_at->format('d/m/Y H:i:s') !!}</td>
-			<td>{!! $item->updated_at->format('d/m/Y H:i:s') !!}</td>
+			<td><center>{!! $item->id !!}</center></td>
+			<td><center>{!! $item->nama !!}</center></td>
+			<td><center>{!! $item->users_id !!}</center></td> 
+			<td><center>{!! $item->created_at->format('d/m/Y H:i:s') !!}</center></td>
+			<td><center>{!! $item->updated_at->format('d/m/Y H:i:s') !!}</center></td>
 			<td>
-				<a href=" {!! route('kategori_galeri.show',[$item->id]) !!}" class="btn btn-primary">Lihat</a>
+				<a href=" {!! route('kategori_galeri.show',[$item->id]) !!}" class="btn btn-lg btn-success">Lihat</a>
 			</td>
 		</tr>
 
 		@endforeach
 	</table>
+</center>
+	<a href="{!! route('kategori_galeri.create') !!}" class="btn btn-secondary">Tambah Data</a>
                 </div>
             </div>
         </div>

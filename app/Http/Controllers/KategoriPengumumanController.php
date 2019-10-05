@@ -18,7 +18,7 @@ class KategoriPengumumanController extends Controller
 
 	public function show($id){
 		//Eloquent
-		//$KategoriGaleri=KategoriGaleri::where('id',$id)->first();//select*from kategori_pengumuman whereid=$id limit 1
+		//$KategoriPengumuman=KategoriPengumuman::where('id',$id)->first();//select*from kategori_pengumuman whereid=$id limit 1
 		$KategoriPengumuman=KategoriPengumuman::find($id);
 		return view('kategori_pengumuman.show', compact('KategoriPengumuman'));
 	}

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Artikel;
+use App\KategoriArtikel;
 
 class ArtikelController extends Controller
 {
@@ -16,7 +17,7 @@ class ArtikelController extends Controller
     //return view(view: 'artikel.index')->with('data',$listArtikel);
 	}
 
-		public function show($id){
+	public function show($id){
 		//Eloquent
 		//$Artikel=Artikel::where('id',$id)->first();//select*from artikel whereid=$id limit 1
 		$Artikel=Artikel::find($id);
@@ -24,7 +25,8 @@ class ArtikelController extends Controller
 	}
 
 	public function create(){
-		return view('artikel.create');
+		$KategoriArtikel=KategoriArtikel::pluck('nama','id');
+		return view('Artikel.create', compact('KategoriArtikel'));
 	}
 
 	public function store(Request $request){
