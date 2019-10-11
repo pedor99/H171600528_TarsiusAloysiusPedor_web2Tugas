@@ -21,12 +21,17 @@ class ArtikelController extends Controller
 		//Eloquent
 		//$Artikel=Artikel::where('id',$id)->first();//select*from artikel whereid=$id limit 1
 		$Artikel=Artikel::find($id);
-		return view('Artikel.show', compact('Artikel'));
+
+		if (empty($Artikel)){
+			return redirect(route('artikel.index'));
+		}
+
+		return view('artikel.show', compact('Artikel'));
 	}
 
 	public function create(){
 		$KategoriArtikel=KategoriArtikel::pluck('nama','id');
-		return view('Artikel.create', compact('KategoriArtikel'));
+		return view('artikel.create', compact('KategoriArtikel'));
 	}
 
 	public function store(Request $request){
@@ -35,5 +40,41 @@ class ArtikelController extends Controller
 		Artikel::create($input);
 
 		return redirect(route('artikel.index'));
+	}
+
+	public function edit($id){
+		$Artikel=Artikel::find($id);
+
+		if (empty($Artikel)){
+			return redirect(route('artikel.index'));
+		}
+
+		$KategoriArtikel=KategoriArtikel::pluck('nama','id');
+
+		return view('artikel.edit', compact('Artikel','KategoriArtikel'));
+	}
+
+	public function update($id,Request $request){
+		$Artikel=Artikel::find($id);
+		$input= $request->all();
+
+		if (empty($Artikel)){
+			return redirect(route('artikel.index'));
+		}
+
+		$Artikel->update($input);
+
+		return redirect(route('artikel.index'));
+	}
+
+	public function destroy($id){
+		$Artikel=Artikel::find($id);
+
+		if (empty($Artikel)){
+			return redirect(route('artikel.index'));
+		}
+
+		$Artikel->delete();
+	return redirect(route('artikel.index'));
 	}
 }

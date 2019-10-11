@@ -32,6 +32,12 @@
 			<td><center>{!! $item->updated_at->format('d/m/Y H:i:s') !!}</center></td>
 			<td>
 				<a href=" {!! route('kategori_berita.show',[$item->id]) !!}" class="btn btn-lg btn-success">Lihat</a>
+			
+				<a href=" {!! route('kategori_berita.edit',[$item->id]) !!}" class="btn btn-lg btn-warning">Edit</a>
+
+				{!! Form::open( ['route' => ['kategori_berita.destroy', $item->id],'method'=>'delete']) !!}
+				{!! Form::submit('Hapus',['class'=>'btn btn-lg btn-danger','onclick'=>"return confirm('Apakah Kamu Yakin Ingin Menghapus ?')"]); !!}
+				{!! Form::close() !!}
 			</td>
 		</tr>
 

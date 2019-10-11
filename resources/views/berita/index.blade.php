@@ -18,6 +18,7 @@
 								<th scope="col"><center>Kategori</center></th>
 								<th scope="col"><center>Users Id</center></th>
 								<th scope="col"><center>Create</center>
+								<th scope="col"><center>Update</center>
 								<th scope="col"><center>Aksi</center></th>
 							</tr>
                   	 	</thead>
@@ -32,8 +33,15 @@
 			<td><center>{!! $item->kategori_berita_id !!}</center></td> 
 			<td><center>{!! $item->users_id !!}</center></td>
 			<td><center>{!! $item->created_at->format('d/m/Y H:i:s') !!}</center></td>
+			<td><center>{!! $item->updated_at->format('d/m/Y H:i:s') !!}</center></td>
 						<td>
-				<a href=" {!! route('Berita.show',[$item->id]) !!}" class="btn btn-lg btn-success">Lihat</a>
+				<a href=" {!! route('berita.show',[$item->id]) !!}" class="btn btn-lg btn-success">Lihat</a>
+
+				<a href=" {!! route('berita.edit',[$item->id]) !!}" class="btn btn-lg btn-warning">Edit</a>
+
+				{!! Form::open( ['route' => ['berita.destroy', $item->id],'method'=>'delete']) !!}
+				{!! Form::submit('Hapus',['class'=>'btn btn-lg btn-danger','onclick'=>"return confirm('Apakah Kamu Yakin Ingin Menghapus ?')"]); !!}
+				{!! Form::close() !!}
 			</td>
 		</tr>
 

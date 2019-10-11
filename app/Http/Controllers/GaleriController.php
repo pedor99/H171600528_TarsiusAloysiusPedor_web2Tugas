@@ -21,7 +21,11 @@ class GaleriController extends Controller
 		//Eloquent
 		//$Galeri=Galeri::where('id',$id)->first();//select*from galeri whereid=$id limit 1
 		$Galeri=Galeri::find($id);
-		return view('Galeri.show', compact('Galeri'));
+
+		if (empty($Galeri)){
+			return redirect(route('artikel.index'));
+		}
+		return view('galeri.show', compact('Galeri'));
 	}
 
 	public function create(){
@@ -35,5 +39,41 @@ class GaleriController extends Controller
 		Galeri::create($input);
 
 		return redirect(route('galeri.index'));
+	}
+
+	public function edit($id){
+		$Galeri=Galeri::find($id);
+
+		if (empty($Galeri)){
+			return redirect(route('galeri.index'));
+		}
+
+		$KategoriGaleri=KategoriGaleri::pluck('nama','id');
+
+		return view('galeri.edit', compact('Galeri','KategoriGaleri'));
+	}
+
+	public function update($id,Request $request){
+		$Galeri=Galeri::find($id);
+		$input= $request->all();
+
+		if (empty($Galeri)){
+			return redirect(route('galeri.index'));
+		}
+
+		$Galeri->update($input);
+
+		return redirect(route('galeri.index'));
+	}
+
+	public function destroy($id){
+		$Galeri=Galeri::find($id);
+
+		if (empty($Galeri)){
+			return redirect(route('galeri.index'));
+		}
+
+		$Galeri->delete();
+	return redirect(route('galeri.index'));
 	}
 }

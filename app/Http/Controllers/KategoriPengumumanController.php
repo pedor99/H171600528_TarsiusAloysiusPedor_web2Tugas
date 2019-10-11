@@ -20,6 +20,11 @@ class KategoriPengumumanController extends Controller
 		//Eloquent
 		//$KategoriPengumuman=KategoriPengumuman::where('id',$id)->first();//select*from kategori_pengumuman whereid=$id limit 1
 		$KategoriPengumuman=KategoriPengumuman::find($id);
+
+		if (empty($KategoriPengumuman)){
+			return redirect(route('kategori_pengumuman.index'));
+		}
+
 		return view('kategori_pengumuman.show', compact('KategoriPengumuman'));
 	}
 
@@ -33,5 +38,39 @@ class KategoriPengumumanController extends Controller
 		KategoriPengumuman::create($input);
 
 		return redirect(route('kategori_pengumuman.index'));
+	}
+
+		public function edit($id){
+		$KategoriPengumuman=KategoriPengumuman::find($id);
+
+		if (empty($KategoriPengumuman)){
+			return redirect(route('kategori_pengumuman.index'));
+		}
+
+		return view('kategori_pengumuman.edit', compact('KategoriPengumuman'));
+	}
+
+	public function update($id,Request $request){
+		$KategoriPengumuman=KategoriPengumuman::find($id);
+		$input= $request->all();
+
+		if (empty($KategoriPengumuman)){
+			return redirect(route('kategori_pengumuman.index'));
+		}
+
+		$KategoriPengumuman->update($input);
+
+		return redirect(route('kategori_pengumuman.index'));
+	}
+
+	public function destroy($id){
+		$KategoriPengumuman=KategoriPengumuman::find($id);
+
+		if (empty($KategoriPengumuman)){
+			return redirect(route('kategori_pengumuman.index'));
+		}
+
+		$KategoriPengumuman->delete();
+	return redirect(route('kategori_pengumuman.index'));
 	}
 }

@@ -20,6 +20,11 @@ class KategoriBeritaController extends Controller
 		//Eloquent
 		//$KategoriBerita=KategoriBerita::where('id',$id)->first();//select*from kategori_berita whereid=$id limit 1
 		$KategoriBerita=KategoriBerita::find($id);
+
+		if (empty($KategoriBerita)){
+			return redirect(route('kategori_berita.index'));
+		}
+
 		return view('kategori_berita.show', compact('KategoriBerita'));
 	}
 
@@ -33,5 +38,39 @@ class KategoriBeritaController extends Controller
 		KategoriBerita::create($input);
 
 		return redirect(route('kategori_berita.index'));
+	}
+
+		public function edit($id){
+		$KategoriBerita=KategoriBerita::find($id);
+
+		if (empty($KategoriBerita)){
+			return redirect(route('kategori_berita.index'));
+		}
+
+		return view('kategori_berita.edit', compact('KategoriBerita'));
+	}
+
+	public function update($id,Request $request){
+		$KategoriBerita=KategoriBerita::find($id);
+		$input= $request->all();
+
+		if (empty($KategoriBerita)){
+			return redirect(route('kategori_berita.index'));
+		}
+
+		$KategoriBerita->update($input);
+
+		return redirect(route('kategori_berita.index'));
+	}
+
+	public function destroy($id){
+		$KategoriBerita=KategoriBerita::find($id);
+
+		if (empty($KategoriBerita)){
+			return redirect(route('kategori_berita.index'));
+		}
+
+		$KategoriBerita->delete();
+	return redirect(route('kategori_berita.index'));
 	}
 }

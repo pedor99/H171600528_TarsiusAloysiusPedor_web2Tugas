@@ -21,12 +21,16 @@ class PengumumanController extends Controller
 		//Eloquent
 		//$Pengumuman=Pengumuman::where('id',$id)->first();//select*from pengumuman whereid=$id limit 1
 		$Pengumuman=Pengumuman::find($id);
-		return view('Pengumuman.show', compact('Pengumuman'));
+
+		if (empty($Pengumuman)){
+			return redirect(route('pengumuman.index'));
+		}
+		return view('pengumuman.show', compact('Pengumuman'));
 	}
 
 	public function create(){
 		$KategoriPengumuman=KategoriPengumuman::pluck('nama','id');
-		return view('Pengumuman.create', compact('KategoriPengumuman'));
+		return view('pengumuman.create', compact('KategoriPengumuman'));
 	}
 
 	public function store(Request $request){
@@ -35,6 +39,42 @@ class PengumumanController extends Controller
 		Pengumuman::create($input);
 
 		return redirect(route('pengumuman.index'));
+	}
+
+	public function edit($id){
+		$Pengumuman=Pengumuman::find($id);
+
+		if (empty($Pengumuman)){
+			return redirect(route('pengumuman.index'));
+		}
+
+		$KategoriPengumuman=KategoriPengumuman::pluck('nama','id');
+
+		return view('pengumuman.edit', compact('Pengumuman','KategoriPengumuman'));
+	}
+
+	public function update($id,Request $request){
+		$Pengumuman=Pengumuman::find($id);
+		$input= $request->all();
+
+		if (empty($Pengumuman)){
+			return redirect(route('pengumuman.index'));
+		}
+
+		$Pengumuman->update($input);
+
+		return redirect(route('pengumuman.index'));
+	}
+
+	public function destroy($id){
+		$Pengumuman=Pengumuman::find($id);
+
+		if (empty($Pengumuman)){
+			return redirect(route('pengumuman.index'));
+		}
+
+		$Pengumuman->delete();
+	return redirect(route('pengumuman.index'));
 	}
 }
 

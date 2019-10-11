@@ -8,9 +8,9 @@
                 <div class="card-header">Tambah Berita</div>
 
                 <div class="card-body">
-                    <form method="post" action="{!! route('Berita.store') !!}">
-                        @include('Berita.form')
-                    </form>
+                    {!!  Form::open(['route'=> 'berita.store','method'=>'post']) !!}
+                            @include('berita.form')
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>

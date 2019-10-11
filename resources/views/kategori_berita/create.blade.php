@@ -7,14 +7,14 @@
             <div class="card">
                 <div class="card-header">Tambah Data</div>
 
-                	<div class="card-body">
-                		<form method="post" action="{!! route('kategori_berita.store') !!}">
-                			@include('kategori_berita.form')
-                		</form>
+                    <div class="card-body">
+                        {!!  Form::open(['route'=> 'kategori_berita.store','method'=>'post']) !!}
+                            @include('kategori_berita.form')
+                        {!! Form::close() !!}
 
-             		</div>
-        	</div>
-    	</div>
-	</div>
+                    </div>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
